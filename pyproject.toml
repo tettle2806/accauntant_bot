@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "accountant-bot"
+version = "0.1.0"
+description = ""
+authors = ["tettle2806 <zidanzohid@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiogram = "^3.3.0"
+python-dotenv = "^1.0.1"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.25"}
+asyncpg = "^0.29.0"
+alembic = "^1.13.1"
+sqlalchemy-utils = "^0.41.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
