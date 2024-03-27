@@ -43,6 +43,9 @@ def income_expenses():
         [
             KeyboardButton(text='➕ Доход'),
             KeyboardButton(text='➖ Расход')
+        ],
+        [
+            KeyboardButton(text='Назад ⬅️')
         ]
     ], row_width=2)
     return markup
@@ -52,10 +55,14 @@ def family():
     markup = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
         [
             KeyboardButton(text='Участники'),
-            KeyboardButton(text='Управление')
+            # KeyboardButton(text='Управление')
+            KeyboardButton(text='Информация')
         ],
         [
-            KeyboardButton(text='Информация')
+            KeyboardButton(text='Главное меню')
+        ],
+        [
+            KeyboardButton(text='Выйти из семьи')
         ]
     ], row_width=2)
     return markup
@@ -68,6 +75,17 @@ def un_family():
         ],
         [
             KeyboardButton(text='Присоединится к семье')
+        ],
+        [
+            KeyboardButton(text='Назад ⬅️')
+        ]
+    ], row_width=2)
+    return markup
+
+def back():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
+        [
+                KeyboardButton(text='Назад ⬅️')
         ]
     ], row_width=2)
     return markup

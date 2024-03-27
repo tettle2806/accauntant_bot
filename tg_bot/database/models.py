@@ -17,7 +17,7 @@ class User(Base):
     income: Mapped[BigInteger] = mapped_column(BigInteger, default=0)
     balance: Mapped[BigInteger] = mapped_column(BigInteger, default=0)
     transactions: Mapped[Integer] = mapped_column(Integer, default=0)
-    family_id: Mapped[Integer] = mapped_column(Integer, nullable=True)
+    family_id: Mapped[Integer] = mapped_column(Integer, nullable=True, default=None)
 
 
 class Family(Base):
@@ -28,7 +28,6 @@ class Family(Base):
     expenses: Mapped[BigInteger] = mapped_column(BigInteger, default=0)
     income: Mapped[BigInteger] = mapped_column(BigInteger, default=0)
     balance: Mapped[BigInteger] = mapped_column(BigInteger, default=0)
-    members: Mapped[Integer] = mapped_column(Integer)
 
 
 class TransactionUser(Base):
