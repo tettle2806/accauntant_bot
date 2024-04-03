@@ -3,7 +3,7 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 
-from tg_bot.database.transactions import select_user, get_family, insert_family, update_user
+from tg_bot.database.transactions import select_user, get_family, insert_family, update_user, get_family_by_id
 from tg_bot.keyboards.inline import accept_cancel
 from tg_bot.keyboards.reply import family, un_family, back, main_menu
 from tg_bot.states.family import FamilyCreate, FamilyStates
@@ -120,6 +120,7 @@ async def save_password(message: types.Message, state:FSMContext):
             await message.answer(f'Вы присоединились к семье <b>{family_name_db}</b>',
                                  parse_mode=ParseMode.HTML,
                                  reply_markup=family())
+            await state.clear()
         else:
             await message.answer('Не верный пароль, введите еще раз', reply_markup=back())
             await state.set_state(FamilyStates.family_pass)
@@ -128,3 +129,26 @@ async def save_password(message: types.Message, state:FSMContext):
 @family_hand_router.message(F.text == 'Главное меню')
 async def back_to_menu(message:types.Message):
     await message.answer('Главное меню', reply_markup=main_menu())
+
+
+@family_hand_router.message(F.text == 'Информация')
+async def information_family(message:types.Message):
+    user_id = message.from_user.id
+    user_info = await select_user(user_id)
+    if user_info is None:
+        await message.answer('Вы не зарегистрированы')
+    else:
+        info = await get_family_by_id(user_info[0][5])
+
+    family_name = info[0][1]
+    family_password = info[0][2]
+    family_balance = info[0][3]
+    family_income = info[0][4]
+    family_expenses = info[0][5]
+    await message.answer(f'Имя семьи: {family_name}\n'
+                         f'Пароль: {family_password}\n'
+                         f'Баланс: {family_balance}\n'
+                         f'Доходы: {family_income}\n'
+                         f'Расходы: {family_expenses}')
+
+

@@ -11,7 +11,7 @@ def main_menu():
             KeyboardButton(text='Действия')
         ],
         [
-            KeyboardButton(text='⚙️ Настройки'),
+            KeyboardButton(text='✍ Оставить отзыв'),
             KeyboardButton(text='ℹ️ Информация о боте')
         ]
     ], row_width=2)
@@ -88,4 +88,29 @@ def back():
                 KeyboardButton(text='Назад ⬅️')
         ]
     ], row_width=2)
+    return markup
+
+def review():
+    markup = ReplyKeyboardMarkup(
+        resize_keyboard=True, keyboard=[
+            [
+                KeyboardButton(text='😤Хочу пожаловатся 👎🏻')
+            ],
+            [
+                KeyboardButton(text='☹️Не понравилось, на 2 ⭐️⭐️')
+            ],
+            [
+                KeyboardButton(text='😐Удовлетворительно на 3 ⭐️⭐️⭐️')
+            ],
+            [
+                KeyboardButton(text='☺️Нормально, на 4 ⭐️⭐️⭐️⭐️')
+            ],
+            [
+                KeyboardButton(text='😊Все понравилось, на 5 ❤️')
+            ],
+            [
+                KeyboardButton(text='🔙 Назад')
+            ]
+        ]
+    )
     return markup
